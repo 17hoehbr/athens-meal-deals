@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container border">
+      <form>
+        <div class="mb-3 mt-3">
+          <label for="location" class="form-label">Location:</label>
+          <input type="text" class="form-control" id="location" placeholder="Larry's Dawg House" name="location">
+        </div>
+        <div class="mb-3 mt-3">
+          <label>Category: </label>
+          <div class="form-check">
+            <input type="radio" class="form-check-input" id="radio1" value="food" name="category" checked>
+            <label class="form-check-label" for="radio1">Food</label>
+          </div>
+          <div class="form-check">
+            <input type="radio" class="form-check-input" id="radio2" value="drink" name="category">
+            <label class="form-check-label" for="radio2">Drink</label>
+          </div>
+          <div class="form-check">
+            <input type="radio" class="form-check-input" id="radio3" class="groceries" value="groceries" name="category">
+            <label class="form-check-label" for="radio3">Groceries</label>
+          </div>
+          <div class="form-check">
+            <input type="radio" class="form-check-input" id="radio4" class="other" value="other" name="category">
+            <label class="form-check-label" for="radio4">Other</label>
+          </div>
+        </div>
+        <div class="mb-3 mt-3">
+          <label for="days" class="form-label">Day(s) of the week:</label>
+          <button type="button" onclick="checkAll('days')" class="btn btn-success btn-sm">Select All</button>
+          <button type="button" onclick="uncheckAll('days')" class="btn btn-danger btn-sm">Deselect All</button>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="mon" name="days" value="mon" checked>
+            <label class="form-check-label" for="mon">Monday</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="tue" name="days" value="tue" checked>
+            <label class="form-check-label" for="tue">Tuesday</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="wed" name="days" value="wed" checked>
+            <label class="form-check-label" for="wed">Wednesday</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="thu" name="days" value="thu" checked>
+            <label class="form-check-label" for="thu">Thursday</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="fri" name="days" value="fri" checked>
+            <label class="form-check-label" for="fri">Friday</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="sat" name="days" value="sat" checked>
+            <label class="form-check-label" for="sat">Saturday</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="sun" name="days" value="sun" checked>
+            <label class="form-check-label" for="sun">Sunday</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="starttime" class="form-label">Start time: </label>
+            <input type="time" class="form-control" id="starttime" placeholder="4:00 PM" name="starttime">
+          </div>
+          <div class="col">
+            <label for="endtime" class="form-label">End time: </label>
+            <input type="time" class="form-control" id="endtime" placeholder="8:00 PM" name="endtime">
+          </div>
+        </div>
+        <div class="mb-3 mt-3">
+          <label for="title" class="form-label">Title: </label>
+          <input type="text" class="form-control" id="title" placeholder="Weenie Wednesday" name="title">
+        </div>
+        <div class="mb-3 mt-3">
+          <label for="description" class="form-label">Description: </label>
+          <textarea class="form-control" rows="5" id="description" placeholder="$1.25 hot dogs" name="description"></textarea>
+        </div>
+        <div class="mb-3 mt-3">
+          <label for="last-verified" class="form-label">Last verified: </label>
+          <input type="date" class="form-control" id="last-verified" name="last-verified">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+{% endblock %}
