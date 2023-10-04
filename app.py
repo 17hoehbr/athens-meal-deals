@@ -103,8 +103,23 @@ def index():
 
 @app.route("/form", methods=('GET', 'POST'))
 def form():
+    all_deals = deals.query.all()
+    places = []
+
+    for deal in all_deals:
+        if deal.place not in places:
+            places.append(deal.place)
+
     if request.method == 'POST':
-        location = request.form['location']
+        # Check if the 'new_location' input field has a value
+        new_location = request.form.get('new_location')
+        
+        if new_location:
+            # If 'new_location' has a value, use it as the 'location' response
+            location = new_location
+        else:
+            # If 'new_location' is empty, use the 'location' selected from the dropdown
+            location = request.form.get('location')
         category = request.form['category']
         days = request.form['days']
         starttime = request.form['starttime']
@@ -132,7 +147,7 @@ def form():
 
             return redirect(url_for('index'))
 
-    return render_template('form.html')
+    return render_template('form.html', places=places)
 
 
 @app.route("/bryce", methods=('GET', 'POST'))

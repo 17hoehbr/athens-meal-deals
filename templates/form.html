@@ -8,11 +8,28 @@
       }
     </style>
 
-    <div class="container border">
+    <div class="container border my-5">
       <form method="post">
         <div class="mb-3 mt-3">
           <label for="location" class="form-label">Location:</label>
-          <input type="text" class="form-control" id="location" placeholder="Larry's Dawg House" name="location" value="{{ request.form['location'] }}" required>
+          <select class="form-select" id="location-dropdown" name="location">
+            {% for place in places %}
+              <option>{{ place }}</option>
+            {% endfor %}
+          </select>
+          <br>
+          <div class="row">
+            <div class="col">
+              <label for="new-location" class="form-label">or add new location:</label>
+              <input type="text" class="form-control" id="new-location" name="new_location">
+            </div>
+            <!-- <div class="col">
+              <label for="logo-upload" class="form-label">Location logo:</label>
+              <input class="form-control" type="file" id="logo-upload" disabled />
+            </div>
+            -->
+          </div>
+
         </div>
         <div class="mb-3 mt-3">
           <label>Category: </label>
@@ -88,7 +105,28 @@
           <label for="last-verified" class="form-label">Last verified: </label>
           <input type="date" class="form-control" id="last-verified" name="last-verified" value="{{ request.form['last-verified'] }}">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary my-3">Submit</button>
       </form>
     </div>
+
+    <script>
+      // Get references to the relevant elements
+      const locationDropdown = document.getElementById("location-dropdown");
+      const newLocationInput = document.getElementById("new-location");
+      const logoUploadInput = document.getElementById("logo-upload");
+  
+      // Add an event listener to the text input
+      newLocationInput.addEventListener("input", function () {
+        // Disable the dropdown and enable the file input when there is input in the text field
+        if (newLocationInput.value.trim() !== "") {
+          locationDropdown.disabled = true;
+          logoUploadInput.disabled = false;
+        } else {
+          // Enable the dropdown and disable the file input when the text field is empty
+          locationDropdown.disabled = false;
+          logoUploadInput.disabled = true;
+        }
+      });
+    </script>
+
 {% endblock %}
