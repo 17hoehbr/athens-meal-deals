@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container table-responsive">
+    <h1>Pending Deals</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                {% for header in col_names %}
+                    {% if header=="id" %}
+                        <th>actions</th>
+                    {% else %}
+                        <th>{{ header }}</th>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in pending_deals %}
+                <tr>
+                    {% for entry in row %}
+                        {% if entry=="id" %}
+                            <td>
+                                <form method="post">
+                                    <button type="submit" name="approve" class="btn btn-success" value="{{ row[entry] }}">Approve</button>
+                                    <button type="submit" name="edit" class="btn btn-primary" value="{{ row[entry] }}">Edit</button>
+                                    <button class="pending" type="submit" name="delete" class="btn btn-danger" value="{{ row[entry] }}">Delete</button>
+                                    <input type="hidden" name="table" value="pending_deals"/>
+                                </form>
+                            </td>
+                        {% else %}
+                            <td>{{ row[entry] }}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h1>All Deals</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                {% for header in col_names %}
+                    {% if header=="id" %}
+                        <th>actions</th>
+                    {% else %}
+                        <th>{{ header }}</th>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in deals %}
+                <tr>
+                    {% for entry in row %}
+                        {% if entry=="id" %}
+                            <td>
+                                <form method="post">
+                                    <!-- <button class="deals" type="submit" name="edit" class="btn btn-primary" value="{{ row[entry] }}">Edit</button> -->
+                                    <button class="deals" type="submit" name="delete" class="btn btn-danger" value="{{ row[entry] }}">Delete</button>
+                                    <input type="hidden" name="table" value="deals"/>
+                                </form>
+                            </td>
+                        {% else %}
+                            <td>{{ row[entry] }}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
