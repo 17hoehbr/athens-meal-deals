@@ -1,11 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <style>
+      .required::after {
+        content: " *";
+        color: red;
+      }
+    </style>
+
     <div class="container border">
-      <form>
+      <form method="post">
         <div class="mb-3 mt-3">
           <label for="location" class="form-label">Location:</label>
-          <input type="text" class="form-control" id="location" placeholder="Larry's Dawg House" name="location">
+          <input type="text" class="form-control" id="location" placeholder="Larry's Dawg House" name="location" value="{{ request.form['location'] }}" required>
         </div>
         <div class="mb-3 mt-3">
           <label>Category: </label>
@@ -31,55 +38,55 @@
           <button type="button" onclick="checkAll('days')" class="btn btn-success btn-sm">Select All</button>
           <button type="button" onclick="uncheckAll('days')" class="btn btn-danger btn-sm">Deselect All</button>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="mon" name="days" value="mon" checked>
-            <label class="form-check-label" for="mon">Monday</label>
+            <input class="form-check-input" type="checkbox" id="Monday" name="days" value="Monday" checked>
+            <label class="form-check-label" for="Monday">Monday</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="tue" name="days" value="tue" checked>
-            <label class="form-check-label" for="tue">Tuesday</label>
+            <input class="form-check-input" type="checkbox" id="Tuesday" name="days" value="Tuesday" checked>
+            <label class="form-check-label" for="Tuesday">Tuesday</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="wed" name="days" value="wed" checked>
-            <label class="form-check-label" for="wed">Wednesday</label>
+            <input class="form-check-input" type="checkbox" id="Wednesday" name="days" value="Wednesday" checked>
+            <label class="form-check-label" for="Wednesday">Wednesday</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="thu" name="days" value="thu" checked>
-            <label class="form-check-label" for="thu">Thursday</label>
+            <input class="form-check-input" type="checkbox" id="Thursday" name="days" value="Thursday" checked>
+            <label class="form-check-label" for="Thursday">Thursday</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="fri" name="days" value="fri" checked>
-            <label class="form-check-label" for="fri">Friday</label>
+            <input class="form-check-input" type="checkbox" id="Friday" name="days" value="Friday" checked>
+            <label class="form-check-label" for="Friday">Friday</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="sat" name="days" value="sat" checked>
-            <label class="form-check-label" for="sat">Saturday</label>
+            <input class="form-check-input" type="checkbox" id="Saturday" name="days" value="Saturday" checked>
+            <label class="form-check-label" for="Saturday">Saturday</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="sun" name="days" value="sun" checked>
-            <label class="form-check-label" for="sun">Sunday</label>
+            <input class="form-check-input" type="checkbox" id="Sunday" name="days" value="Sunday" checked>
+            <label class="form-check-label" for="Sunday">Sunday</label>
           </div>
         </div>
         <div class="row">
           <div class="col">
             <label for="starttime" class="form-label">Start time: </label>
-            <input type="time" class="form-control" id="starttime" placeholder="4:00 PM" name="starttime">
+            <input type="time" class="form-control" id="starttime" placeholder="4:00 PM" name="starttime" value="{{ request.form['starttime'] }}">
           </div>
           <div class="col">
             <label for="endtime" class="form-label">End time: </label>
-            <input type="time" class="form-control" id="endtime" placeholder="8:00 PM" name="endtime">
+            <input type="time" class="form-control" id="endtime" placeholder="8:00 PM" name="endtime" value="{{ request.form['endtime'] }}">
           </div>
         </div>
         <div class="mb-3 mt-3">
           <label for="title" class="form-label">Title: </label>
-          <input type="text" class="form-control" id="title" placeholder="Weenie Wednesday" name="title">
+          <input type="text" class="form-control" id="title" placeholder="Weenie Wednesday" name="title" value="{{ request.form['title'] }}" required>
         </div>
         <div class="mb-3 mt-3">
           <label for="description" class="form-label">Description: </label>
-          <textarea class="form-control" rows="5" id="description" placeholder="$1.25 hot dogs" name="description"></textarea>
+          <textarea class="form-control" rows="5" id="description" placeholder="$1.25 hot dogs" name="description" value="{{ request.form['description'] }}" required></textarea>
         </div>
         <div class="mb-3 mt-3">
           <label for="last-verified" class="form-label">Last verified: </label>
-          <input type="date" class="form-control" id="last-verified" name="last-verified">
+          <input type="date" class="form-control" id="last-verified" name="last-verified" value="{{ request.form['last-verified'] }}">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

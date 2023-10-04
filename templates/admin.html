@@ -24,8 +24,8 @@
                             <td>
                                 <form method="post">
                                     <button type="submit" name="approve" class="btn btn-success" value="{{ row[entry] }}">Approve</button>
-                                    <button type="submit" name="edit" class="btn btn-primary" value="{{ row[entry] }}">Edit</button>
-                                    <button class="pending" type="submit" name="delete" class="btn btn-danger" value="{{ row[entry] }}">Delete</button>
+                                    <!-- <button type="submit" name="edit" class="btn btn-primary" value="{{ row[entry] }}">Edit</button> -->
+                                    <button type="submit" name="delete" class="btn btn-danger" value="{{ row[entry] }}">Delete</button>
                                     <input type="hidden" name="table" value="pending_deals"/>
                                 </form>
                             </td>
@@ -58,7 +58,7 @@
                             <td>
                                 <form method="post">
                                     <!-- <button class="deals" type="submit" name="edit" class="btn btn-primary" value="{{ row[entry] }}">Edit</button> -->
-                                    <button class="deals" type="submit" name="delete" class="btn btn-danger" value="{{ row[entry] }}">Delete</button>
+                                    <button type="submit" name="delete" class="btn btn-danger" value="{{ row[entry] }}">Delete</button>
                                     <input type="hidden" name="table" value="deals"/>
                                 </form>
                             </td>

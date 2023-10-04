@@ -1,137 +1,146 @@
 {% extends 'base.html' %}
+<!-- Filters -->
+{% block navbar %}
+
+      <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilter" aria-controls="offcanvasFilter">
+        Filter
+        <img src="./static/icons/filter-circle.svg" alt="Filter Icon">
+      </button>
+
+{% endblock %}
 
 {% block content %}    
-    <!-- Filters -->
-    <div class="row">
-      <div class="col-sm-4">
-        <div class=".container-fluid px-3">
-          <h2>Filters (currently broken)</h2>
-          <form method="GET">
-          <div id="accordion">
-            <div class="card">
-              <!-- Category filter -->
-              <div class="card-header">
-                <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasFilter" aria-labelledby="offcanvasFilterLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasFilterLabel">Advanced Filter</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <h2>Advanced Filters</h2>
+      <form method="post">
+        <div class="accordion" id="filter">
+          <!-- Category filter -->
+          <div class="accordion-item show">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 Category
-                </a>
-              </div>
-              <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
-                <div class="card-body">
-                  <button type="button" onclick="checkAll('category')" class="btn btn-success btn-sm select-category">Select All</button>
-                  <button type="button" onclick="uncheckAll('category')" class="btn btn-danger btn-sm deselect-category">Deselect All</button>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="food" name="category" value="food" checked>
-                    <label class="form-check-label">Food</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="drink" name="category" value="drink" checked>
-                    <label class="form-check-label">Drinks</label>
-                  </div>
+              </button>
+            </h2>
+            
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#filter">
+              <div class="accordion-body">
+                <button type="button" onclick="checkAll('category')" class="btn btn-success btn-sm select-category">Select All</button>
+                <button type="button" onclick="uncheckAll('category')" class="btn btn-danger btn-sm deselect-category">Deselect All</button>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="food" name="category" value="food" checked>
+                  <label class="form-check-label" for="food">Food</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="drink" name="category" value="drink" checked>
+                  <label class="form-check-label" for="drink">Drinks</label>
                 </div>
               </div>
             </div>
-            <div class="card">
-              <!-- Day filter -->
-              <div class="card-header">
-                <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
+          </div>
+          <!-- Day filter-->
+          <div class="accordion-item show">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                 Day
-                </a>
-              </div>
-              <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
-                <div class="card-body">
-                  <button type="button" onclick="checkAll('days')" class="btn btn-success btn-sm select-day">Select All</button>
-                  <button type="button" onclick="uncheckAll('days')" class="btn btn-danger btn-sm deselect-day">Deselect All</button>
-                  {% for day in days %}
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id={{ day }} name="days" value={{ day }} checked>
-                      <label class="form-check-label">{{ day }}</label>
-                    </div>
-                  {% endfor %}
+              </button>
+            </h2>
+
+            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#filter">
+              <div class="accordion-body">
+                <button type="button" onclick="checkAll('days')" class="btn btn-success btn-sm select-day">Select All</button>
+                <button type="button" onclick="uncheckAll('days')" class="btn btn-danger btn-sm deselect-day">Deselect All</button>
+                {% for day in days %}
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="{{ day }}" name="days" value="{{ day }}" checked>
+                  <label class="form-check-label" for="{{ day }}">{{ day }}</label>
                 </div>
+                {% endfor %}
               </div>
             </div>
-            <div class="card">
-              <!-- Place filter -->
-              <div class="card-header">
-                <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree">
+          </div>
+          <!-- Place filter -->
+          <div class="accordion-item show">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
                 Place
-                </a>
-              </div>
-              <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
-                <div class="card-body">
-                  <button type="button" onclick="checkAll('places')" class="btn btn-success btn-sm select-restaurant">Select All</button>
-                  <button type="button" onclick="uncheckAll('places')" class="btn btn-danger btn-sm deselect-restaurant">Deselect All</button>
-                  {% for place in places %}
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="places" checked>
-                      <label class="form-check-label">{{ place }}</label>
-                    </div>
-                  {% endfor %}
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#filter">
+              <div class="accordion-body">
+                <button type="button" onclick="checkAll('places')" class="btn btn-success btn-sm select-restaurant">Select All</button>
+                <button type="button" onclick="uncheckAll('places')" class="btn btn-danger btn-sm deselect-restaurant">Deselect All</button>
+                {% for place in places %}
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="{{ place }}" name="places" value="{{ place }}" checked>
+                  <label class="form-check-label" for="{{ place }}">{{ place }}</label>
                 </div>
+                {% endfor %}
               </div>
-              <button type="button" class="btn btn-success btn-sm">Filter</button>
-              <button type="button" class="btn btn-danger btn-sm">Reset filter</button>
             </div>
-          </form>
+          </div>
+          <!-- Submit button -->
+          <button type="submit" class="btn btn-success btn-sm">Filter</button>
+          <button type="button" class="btn btn-danger btn-sm">Reset filter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Centered Container -->
+<div class="container">
+  <!-- Content -->
+  {% for day in days %}
+  <div class="flex-row m-3 d-flex justify-content-center">
+    <h1><strong>{{ day }}</strong></h1>
+  </div>
+  <!-- Days -->
+  <div class="flex-row d-flex justify-content-center" id="{{ day }}">
+    {% for deal in deals %}
+    <!-- Deals -->
+    {% if day in deal['dates'] %}
+    <div class="card m-3" style="width: 250px">
+      {% set place = deal['place'].lower().replace("'", "").replace(' ', '') %}
+      <img class="card-img-top" src="/static/icons/{{ place }}.webp">
+      <div class="card-body">
+        <h4 class="card-title">{{ deal['place'] }}</h4>
+        <p class="card-text">{{ deal['title'] }}</p>
+      </div>
+      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-{{ deal['id'] }}">
+      Details
+      </button>
+    </div>
+    <!-- Deal modal -->
+    <div class="modal" id="modal-{{ deal['id'] }}">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title text-center">{{ deal['place'] }} - {{ deal['title'] }}</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            {{ deal['notes'] }}
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
-      
-      <div class="col-sm-8">
-        <div class="row justify-content-center text-center px-3">
-            {% for day in days %}
-              <a id="{{ day }}">
-                <h2 class="py-3">{{ day }}</h2>
-              </a>
-              <hr>
-              {% for deal in deals %}
-                {% if day in deal['dates'] %}
-                  <div class="card py-3" style="width:250px">
-                    {% set place = deal['place'].lower().replace("'", "").replace(' ', '') %}
-                    <img class="card-img-top pd-3" src="/static/icons/{{ place }}.webp">
-                    <div class="card-body">
-                      <h4 class="card-title">{{ deal['place'] }}</h4>
-                      <p class="card-text">{{ deal['title'] }}</p>
-                    </div>
-                    <button type="button py-5" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-{{ deal['id'] }}">
-                      Details
-                    </button>
-                  </div>
-                  <!-- The Modal -->
-                  <div class="modal" id="modal-{{ deal['id'] }}">
-                    <div class="modal-dialog modal-dialog-centered">
-                      <div class="modal-content">
-
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                          <h4 class="modal-title text-center">{{ deal['place'] }} - {{ deal['title'] }}</h4>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                          {{ deal['notes'] }}
-                        </div>
-
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                {% endif %}
-              {% endfor %}
-            {% endfor %}
-        </div>
-      </div>
     </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+  {% endfor %}
+</div>
 
-    <script>
-      var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-      var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-        return new bootstrap.Popover(popoverTriggerEl)
-      })
-    </script>
-      
+
 {% endblock %}
