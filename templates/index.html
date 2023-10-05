@@ -101,20 +101,22 @@
     <h1><strong>{{ day }}</strong></h1>
   </div>
   <!-- Days -->
-  <div class="flex-row d-flex justify-content-center" id="{{ day }}">
+  <div class="row justify-content-center flex-wrap" id="{{ day }}">
     {% for deal in deals %}
     <!-- Deals -->
     {% if day in deal['dates'] %}
-    <div class="card m-3" style="width: 250px">
-      {% set place = deal['place'].lower().replace("'", "").replace(' ', '') %}
-      <img class="card-img-top" src="/static/icons/{{ place }}.webp">
-      <div class="card-body">
-        <h4 class="card-title">{{ deal['place'] }}</h4>
-        <p class="card-text">{{ deal['title'] }}</p>
+    <div class="col-md-4">
+      <div class="card my-3 mx-auto text-center" style="width: 250px;">
+        {% set place = deal['place'].lower().replace("'", "").replace(' ', '') %}
+        <img class="card-img-top" src="/static/icons/{{ place }}.webp">
+        <div class="card-body">
+          <h4 class="card-title">{{ deal['place'] }}</h4>
+          <p class="card-text">{{ deal['title'] }}</p>
+        </div>
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-{{ deal['id'] }}">
+          Details
+        </button>
       </div>
-      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-{{ deal['id'] }}">
-      Details
-      </button>
     </div>
     <!-- Deal modal -->
     <div class="modal" id="modal-{{ deal['id'] }}">
