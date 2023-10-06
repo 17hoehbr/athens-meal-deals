@@ -19,12 +19,12 @@
       <h2>Advanced Filters</h2>
       <form method="post">
         <!-- Category filter -->
-        <div class="mb-3">
-          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#categoryCollapse" aria-expanded="false">
-            Category
-          </button>
-          <div class="collapse show" id="categoryCollapse">
-            <div class="card card-body">
+        <div class="row mb-3">
+          <div class="card card-body">
+            <button class="card-title btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#categoryCollapse" aria-expanded="false">
+              Category
+            </button>
+            <div class="collapse show" id="categoryCollapse">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="food" name="category" value="food" {% if 'food' in filtered_categories %}checked{% endif %}>
                 <label class="form-check-label" for="food">Food</label>
@@ -33,50 +33,55 @@
                 <input class="form-check-input" type="checkbox" id="drink" name="category" value="drink" {% if 'drink' in filtered_categories %}checked{% endif %}>
                 <label class="form-check-label" for="drink">Drinks</label>
               </div>
-              <button type="button" onclick="checkAll('category')" class="btn btn-success btn-sm select-category">Select All</button>
-              <button type="button" onclick="uncheckAll('category')" class="btn btn-danger btn-sm deselect-category">Deselect All</button>
+              <hr>
+              <button type="button" onclick="checkAll('category')" class="btn btn-success btn-sm select-category card-link">Select All</button>
+              <button type="button" onclick="uncheckAll('category')" class="btn btn-danger btn-sm deselect-category card-link">Deselect All</button>
             </div>
           </div>
         </div>
         <!-- Day filter-->
-        <div class="mb-3">
-          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#dayCollapse" aria-expanded="false">
-            Day
-          </button>
-          <div class="collapse show" id="dayCollapse">
-            <div class="card card-body">
-              {% for day in days %}
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="{{ day }}" name="days" value="{{ day }}" {% if day in filtered_days %}checked{% endif %}>
-                <label class="form-check-label" for="{{ day }}">{{ day }}</label>
+        <div class="row mb-3">
+          <div class="card card-body">
+            <button class="card-title btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#dayCollapse" aria-expanded="false">
+              Day
+            </button>
+            <div class="collapse show" id="dayCollapse">
+                {% for day in days %}
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="{{ day }}" name="days" value="{{ day }}" {% if day in filtered_days %}checked{% endif %}>
+                  <label class="form-check-label" for="{{ day }}">{{ day }}</label>
+                </div>
+                {% endfor %}
+                <hr>
+                <button type="button" onclick="checkAll('days')" class="btn btn-success btn-sm select-day card-link">Select All</button>
+                <button type="button" onclick="uncheckAll('days')" class="btn btn-danger btn-sm deselect-day card-link">Deselect All</button>
               </div>
-              {% endfor %}
-              <button type="button" onclick="checkAll('days')" class="btn btn-success btn-sm select-day">Select All</button>
-              <button type="button" onclick="uncheckAll('days')" class="btn btn-danger btn-sm deselect-day">Deselect All</button>
             </div>
-          </div>
         </div>
         <!-- Place filter -->
-        <div class="mb-3">
-          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#placeCollapse" aria-expanded="false">
-            Place
-          </button>
-          <div class="collapse show" id="placeCollapse">
-            <div class="card card-body">
-              {% for place in places %}
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="{{ place }}" name="places" value="{{ place }}" {% if place in filtered_places %}checked{% endif %}>
-                <label class="form-check-label" for="{{ place }}">{{ place }}</label>
-              </div>
-              {% endfor %}
-              <button type="button" onclick="checkAll('places')" class="btn btn-success btn-sm select-restaurant">Select All</button>
-              <button type="button" onclick="uncheckAll('places')" class="btn btn-danger btn-sm deselect-restaurant">Deselect All</button>
+        <div class="row mb-3">
+          <div class="card card-body">
+            <button class="card-title btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#placeCollapse" aria-expanded="false">
+              Place
+            </button>
+            <div class="collapse show" id="placeCollapse">
+                {% for place in places %}
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="{{ place }}" name="places" value="{{ place }}" {% if place in filtered_places %}checked{% endif %}>
+                  <label class="form-check-label" for="{{ place }}">{{ place }}</label>
+                </div>
+                {% endfor %}
+                <hr>
+                <button type="button" onclick="checkAll('places')" class="btn btn-success btn-sm select-restaurant card-link">Select All</button>
+                <button type="button" onclick="uncheckAll('places')" class="btn btn-danger btn-sm deselect-restaurant card-link">Deselect All</button>
             </div>
           </div>
         </div>
         <!-- Submit button -->
-        <button type="submit" class="btn btn-success btn-sm">Filter</button>
-        <button type="button" onclick="resetFilter()" class="btn btn-danger btn-sm">Reset filter</button>
+        <div class="d-grid">
+          <button type="submit" class="btn btn-success btn-m">Filter</button>
+          <button type="button" onclick="resetFilter()" class="btn btn-danger btn-m">Reset filter</button>
+        </div>
       </form>      
     </div>
   </div>
@@ -84,11 +89,12 @@
 
 
 <!-- Centered Container -->
-<div class="container">
+<div class="container p-3">
   <!-- Content -->
   {% for day in days %}
-  <div class="flex-row m-3 d-flex">
+  <div class="row mx-auto rounded">
     <h1><strong>{{ day }}</strong></h1>
+    <hr>
   </div>
   <!-- Days -->
   <div class="row flex-wrap" id="{{ day }}">
@@ -96,7 +102,7 @@
     <!-- Deals -->
     {% if day in deal['dates'] %}
     <div class="col col-lg-3">
-      <div class="card my-3 mx-auto text-center" data-bs-toggle="modal" data-bs-target="#modal-{{ deal['id'] }}" style="width: 200px">
+      <div class="card my-4 mx-auto text-center" data-bs-toggle="modal" data-bs-target="#modal-{{ deal['id'] }}" style="width: 200px">
         {% set place = deal['place'].lower().replace("'", "").replace(' ', '') %}
         <img class="card-img-top" src="/static/icons/{{ place }}.webp">
         <div class="card-body">
