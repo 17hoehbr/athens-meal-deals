@@ -97,8 +97,15 @@ def index():
                           deal.category in filtered_categories and
                           deal.dates in filtered_days and
                           deal.place in filtered_places]
+    else:
+        # If it's a GET request, you can initialize the filter values here.
+        filtered_categories = ['food', 'drink']  # Default values
+        filtered_days = days  # All days selected by default
+        filtered_places = places  # All places selected by default
 
-    return render_template('index.html', deals=filtered_deals, days=days, places=places)
+    return render_template('index.html', deals=filtered_deals, days=days, places=places,
+                           filtered_categories=filtered_categories, filtered_days=filtered_days,
+                           filtered_places=filtered_places)
 
 
 @app.route("/form", methods=('GET', 'POST'))
