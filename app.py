@@ -128,7 +128,13 @@ def form():
             # If 'new_location' is empty, use the 'location' selected from the dropdown
             location = request.form.get('location')
         category = request.form['category']
-        days = request.form['days']
+
+        dlist = request.form.getlist('days[]')
+        if len(dlist) == 6:
+            days = 'Daily'
+        else:
+            days = ','.join(dlist)
+
         starttime = request.form['starttime']
         endtime = request.form['endtime']
         title = request.form['title']
