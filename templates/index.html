@@ -85,7 +85,7 @@
           </div>
           <!-- Submit button -->
           <button type="submit" class="btn btn-success btn-sm">Filter</button>
-          <button type="button" class="btn btn-danger btn-sm">Reset filter</button>
+          <button type="button" onclick="resetFilter()" class="btn btn-danger btn-sm">Reset filter</button>
         </div>
       </form>
     </div>
@@ -106,7 +106,7 @@
     <!-- Deals -->
     {% if day in deal['dates'] %}
     <div class="col col-lg-3">
-      <div class="card my-3 mx-auto text-center" style="width: 200px">
+      <div class="card my-3 mx-auto text-center" data-bs-toggle="modal" data-bs-target="#modal-{{ deal['id'] }}" style="width: 200px">
         {% set place = deal['place'].lower().replace("'", "").replace(' ', '') %}
         <img class="card-img-top" src="/static/icons/{{ place }}.webp">
         <div class="card-body">
