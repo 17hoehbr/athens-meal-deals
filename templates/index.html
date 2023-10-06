@@ -97,16 +97,16 @@
 <div class="container">
   <!-- Content -->
   {% for day in days %}
-  <div class="flex-row m-3 d-flex justify-content-center">
+  <div class="flex-row m-3 d-flex">
     <h1><strong>{{ day }}</strong></h1>
   </div>
   <!-- Days -->
-  <div class="row justify-content-center flex-wrap" id="{{ day }}">
+  <div class="row flex-wrap" id="{{ day }}">
     {% for deal in deals %}
     <!-- Deals -->
     {% if day in deal['dates'] %}
-    <div class="col-md-4">
-      <div class="card my-3 mx-auto text-center" style="width: 250px;">
+    <div class="col col-lg-3">
+      <div class="card my-3 mx-auto text-center" style="width: 200px">
         {% set place = deal['place'].lower().replace("'", "").replace(' ', '') %}
         <img class="card-img-top" src="/static/icons/{{ place }}.webp">
         <div class="card-body">
