@@ -12,6 +12,13 @@ function uncheckAll(name) {
   }
 }
 
+function resetFilter(name) {
+  let checkboxes = document.querySelectorAll(`input[type="checkbox"]`);
+  for (var i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].checked = true;
+  }
+}
+
 var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
 var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
   return new bootstrap.Popover(popoverTriggerEl)
