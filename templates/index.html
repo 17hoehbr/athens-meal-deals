@@ -18,76 +18,66 @@
     <div class="offcanvas-body">
       <h2>Advanced Filters</h2>
       <form method="post">
-        <div class="accordion" id="filter">
-          <!-- Category filter -->
-          <div class="accordion-item show">
-            <h2 class="accordion-header" id="headingOne">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Category
-              </button>
-            </h2>
-            
-            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#filter">
-              <div class="accordion-body">
-                <button type="button" onclick="checkAll('category')" class="btn btn-success btn-sm select-category">Select All</button>
-                <button type="button" onclick="uncheckAll('category')" class="btn btn-danger btn-sm deselect-category">Deselect All</button>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="food" name="category" value="food" {% if 'food' in filtered_categories %}checked{% endif %}>
-                  <label class="form-check-label" for="food">Food</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="drink" name="category" value="drink" {% if 'drink' in filtered_categories %}checked{% endif %}>
-                  <label class="form-check-label" for="drink">Drinks</label>
-                </div>
+        <!-- Category filter -->
+        <div class="mb-3">
+          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#categoryCollapse" aria-expanded="false">
+            Category
+          </button>
+          <div class="collapse show" id="categoryCollapse">
+            <div class="card card-body">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="food" name="category" value="food" {% if 'food' in filtered_categories %}checked{% endif %}>
+                <label class="form-check-label" for="food">Food</label>
               </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="drink" name="category" value="drink" {% if 'drink' in filtered_categories %}checked{% endif %}>
+                <label class="form-check-label" for="drink">Drinks</label>
+              </div>
+              <button type="button" onclick="checkAll('category')" class="btn btn-success btn-sm select-category">Select All</button>
+              <button type="button" onclick="uncheckAll('category')" class="btn btn-danger btn-sm deselect-category">Deselect All</button>
             </div>
           </div>
-          <!-- Day filter-->
-          <div class="accordion-item show">
-            <h2 class="accordion-header" id="headingTwo">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                Day
-              </button>
-            </h2>
-
-            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#filter">
-              <div class="accordion-body">
-                <button type="button" onclick="checkAll('days')" class="btn btn-success btn-sm select-day">Select All</button>
-                <button type="button" onclick="uncheckAll('days')" class="btn btn-danger btn-sm deselect-day">Deselect All</button>
-                {% for day in days %}
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="{{ day }}" name="days" value="{{ day }}" {% if day in filtered_days %}checked{% endif %}>
-                  <label class="form-check-label" for="{{ day }}">{{ day }}</label>
-                </div>
-                {% endfor %}
-              </div>
-            </div>
-          </div>
-          <!-- Place filter -->
-          <div class="accordion-item show">
-            <h2 class="accordion-header" id="headingThree">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                Place
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#filter">
-              <div class="accordion-body">
-                <button type="button" onclick="checkAll('places')" class="btn btn-success btn-sm select-restaurant">Select All</button>
-                <button type="button" onclick="uncheckAll('places')" class="btn btn-danger btn-sm deselect-restaurant">Deselect All</button>
-                {% for place in places %}
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="{{ place }}" name="places" value="{{ place }}" {% if place in filtered_places %}checked{% endif %}>
-                  <label class="form-check-label" for="{{ place }}">{{ place }}</label>
-                </div>
-                {% endfor %}
-              </div>
-            </div>
-          </div>
-          <!-- Submit button -->
-          <button type="submit" class="btn btn-success btn-sm">Filter</button>
-          <button type="button" onclick="resetFilter()" class="btn btn-danger btn-sm">Reset filter</button>
         </div>
-      </form>
+        <!-- Day filter-->
+        <div class="mb-3">
+          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#dayCollapse" aria-expanded="false">
+            Day
+          </button>
+          <div class="collapse show" id="dayCollapse">
+            <div class="card card-body">
+              {% for day in days %}
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="{{ day }}" name="days" value="{{ day }}" {% if day in filtered_days %}checked{% endif %}>
+                <label class="form-check-label" for="{{ day }}">{{ day }}</label>
+              </div>
+              {% endfor %}
+              <button type="button" onclick="checkAll('days')" class="btn btn-success btn-sm select-day">Select All</button>
+              <button type="button" onclick="uncheckAll('days')" class="btn btn-danger btn-sm deselect-day">Deselect All</button>
+            </div>
+          </div>
+        </div>
+        <!-- Place filter -->
+        <div class="mb-3">
+          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#placeCollapse" aria-expanded="false">
+            Place
+          </button>
+          <div class="collapse show" id="placeCollapse">
+            <div class="card card-body">
+              {% for place in places %}
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="{{ place }}" name="places" value="{{ place }}" {% if place in filtered_places %}checked{% endif %}>
+                <label class="form-check-label" for="{{ place }}">{{ place }}</label>
+              </div>
+              {% endfor %}
+              <button type="button" onclick="checkAll('places')" class="btn btn-success btn-sm select-restaurant">Select All</button>
+              <button type="button" onclick="uncheckAll('places')" class="btn btn-danger btn-sm deselect-restaurant">Deselect All</button>
+            </div>
+          </div>
+        </div>
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-success btn-sm">Filter</button>
+        <button type="button" onclick="resetFilter()" class="btn btn-danger btn-sm">Reset filter</button>
+      </form>      
     </div>
   </div>
 </div>
