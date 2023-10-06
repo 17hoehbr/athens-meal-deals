@@ -32,11 +32,11 @@
                 <button type="button" onclick="checkAll('category')" class="btn btn-success btn-sm select-category">Select All</button>
                 <button type="button" onclick="uncheckAll('category')" class="btn btn-danger btn-sm deselect-category">Deselect All</button>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="food" name="category" value="food" checked>
+                  <input class="form-check-input" type="checkbox" id="food" name="category" value="food" {% if 'food' in filtered_categories %}checked{% endif %}>
                   <label class="form-check-label" for="food">Food</label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="drink" name="category" value="drink" checked>
+                  <input class="form-check-input" type="checkbox" id="drink" name="category" value="drink" {% if 'drink' in filtered_categories %}checked{% endif %}>
                   <label class="form-check-label" for="drink">Drinks</label>
                 </div>
               </div>
@@ -56,7 +56,7 @@
                 <button type="button" onclick="uncheckAll('days')" class="btn btn-danger btn-sm deselect-day">Deselect All</button>
                 {% for day in days %}
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="{{ day }}" name="days" value="{{ day }}" checked>
+                  <input class="form-check-input" type="checkbox" id="{{ day }}" name="days" value="{{ day }}" {% if day in filtered_days %}checked{% endif %}>
                   <label class="form-check-label" for="{{ day }}">{{ day }}</label>
                 </div>
                 {% endfor %}
@@ -76,7 +76,7 @@
                 <button type="button" onclick="uncheckAll('places')" class="btn btn-danger btn-sm deselect-restaurant">Deselect All</button>
                 {% for place in places %}
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="{{ place }}" name="places" value="{{ place }}" checked>
+                  <input class="form-check-input" type="checkbox" id="{{ place }}" name="places" value="{{ place }}" {% if place in filtered_places %}checked{% endif %}>
                   <label class="form-check-label" for="{{ place }}">{{ place }}</label>
                 </div>
                 {% endfor %}
