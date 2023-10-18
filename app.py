@@ -75,11 +75,13 @@ def index():
 
     # Used for days and places filter on sidebar
     for deal in all_deals:
-        if deal.dates not in days:
-            days.append(deal.dates)
+        d = deal.dates.split(',')
+        for day in d:
+            if day not in days:
+                days.append(day)
 
-        if deal.place not in places:
-            places.append(deal.place)
+            if deal.place not in places:
+                places.append(deal.place)
 
     # Sort the remaining dates
     days.sort(key=lambda date: weekday_order[date.split(',')[0]])
