@@ -132,7 +132,7 @@ def form():
         category = request.form['category']
 
         dlist = request.form.getlist('days[]')
-        if len(dlist) == 6:
+        if len(dlist) == 7:
             days = 'Daily'
         else:
             days = ','.join(dlist)
@@ -165,7 +165,7 @@ def form():
     return render_template('form.html', places=places)
 
 
-@app.route("/bryce", methods=('GET', 'POST'))
+@app.route("/admin", methods=('GET', 'POST'))
 @authenticate(ADMIN_USERNAME, ADMIN_PASSWORD)
 def admin():
     if request.method == 'POST':
