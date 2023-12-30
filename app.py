@@ -3,17 +3,18 @@ from flask import Flask, render_template, redirect, request, send_file, url_for,
 from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
 from dotenv import load_dotenv
+from datetime import datetime
 
 app = Flask(__name__)
 
 load_dotenv()
 
 # adding configuration for using a sqlite database
-app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:////{os.getcwd()}/database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.getcwd()}/database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # form
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+app.secret_key = os.urandom(12).hex()
 ADMIN_USERNAME =  os.getenv('ADMIN_USERNAME')
 ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD')
 
@@ -76,6 +77,8 @@ def index():
     # Used for days and places filter on sidebar
     for deal in all_deals:
         d = deal.dates.split(',')
+        deal.start_time = datetime.strptime(deal.start_time, "%H:%M").strftime("%I:%M %p")
+        deal.end_time = datetime.strptime(deal.end_time, "%H:%M").strftime("%I:%M %p")
         for day in d:
             if day not in days:
                 days.append(day)
