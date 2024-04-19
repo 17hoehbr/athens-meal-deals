@@ -123,6 +123,7 @@
         <div class="card-body">
           <h4 class="card-title">{{ deal['place'] }}</h4>
           <p class="card-text">{{ deal['title'] }}</p>
+          <p class="card-text">{{ deal['start_time'] }} - {{ deal['end_time'] }}</p>
         </div>
         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-{{ deal['id'] }}">
           Details
