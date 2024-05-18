@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, redirect, request, send_file, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import asc
 from functools import wraps
 from dotenv import load_dotenv
 from datetime import datetime
@@ -59,7 +60,7 @@ def authenticate(username, password):
 @app.route("/", methods=['GET', 'POST'])
 def index():
     db.create_all()
-    all_deals = deals.query.all()
+    all_deals = deals.query.order_by(asc(deals.place))
     days = []
     places = []
 
@@ -117,7 +118,7 @@ def index():
 
 @app.route("/form", methods=('GET', 'POST'))
 def form():
-    all_deals = deals.query.all()
+    all_deals = deals.query.order_by(asc(deals.place))
     places = []
 
     for deal in all_deals:
