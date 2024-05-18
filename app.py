@@ -208,7 +208,9 @@ def admin():
                 deals.query.filter_by(id=rowid).delete()
 
             db.session.commit()
-            return redirect('/bryce')
+            
+            flash("Database updated", "info")
+            return redirect('/admin')
 
 
     # Convert each row to a dictionary
