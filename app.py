@@ -166,7 +166,8 @@ def form():
             db.session.add(response)
             db.session.commit()
 
-            return redirect(url_for('index'))
+            flash("Deal submitted successfully!", "info")
+            return redirect('/form')
 
     return render_template('form.html', places=places)
 
