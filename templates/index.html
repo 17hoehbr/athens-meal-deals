@@ -55,9 +55,9 @@
           <div class="collapse show" id="dayCollapse">
             {% for day in days %}
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="{{ day }}" name="days" value="{{ day }}" {% if day in
+              <input class="form-check-input" type="checkbox" id="{{ day }}_filter" name="days" value="{{ day }}" {% if day in
                 filtered_days %}checked{% endif %}>
-              <label class="form-check-label" for="{{ day }}">{{ day }}</label>
+              <label class="form-check-label" for="{{ day }}_filter">{{ day }}</label>
             </div>
             {% endfor %}
             <hr>
@@ -106,14 +106,13 @@
 <div class="container p-3">
   <!-- Content -->
   {% for day in days %}
-  <div class="row mx-auto rounded">
+  <div class="row mx-auto rounded" id="{{ day }}">
     <h1><strong>{{ day }}</strong></h1>
     <hr>
   </div>
   <!-- Days -->
-  <div class="row flex-wrap" id="{{ day }}">
+  <div class="row flex-wrap">
     {% for deal in deals %}
-    <!-- Deals -->
     {% if day in deal['dates'] %}
     <div class="col col-lg-3">
       <div class="card my-4 mx-auto text-center" data-bs-toggle="modal" data-bs-target="#modal-{{ deal['id'] }}"
@@ -123,7 +122,13 @@
         <div class="card-body">
           <h4 class="card-title">{{ deal['place'] }}</h4>
           <p class="card-text">{{ deal['title'] }}</p>
-          <p class="card-text">{{ deal['start_time'] }} - {{ deal['end_time'] }}</p>
+          <p>{% if deal['start_time'] %}
+            {{ deal['start_time']}}
+             - 
+            {% if deal['end_time'] %}
+              {{ deal['end_time']}}
+            {% endif %}
+          {% endif %}</p>
         </div>
         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-{{ deal['id'] }}">
           Details
@@ -141,9 +146,17 @@
           </div>
           <!-- Modal body -->
           <div class="modal-body">
+            {% if deal['start_time'] or deal['end_time'] %}
             <div>
-              {{ deal['start_time']}} - {{ deal['end_time']}}
+              <p>{% if deal['start_time'] %}
+                {{ deal['start_time']}}
+                 - 
+                {% if deal['end_time'] %}
+                  {{ deal['end_time']}}
+                {% endif %}
+              {% endif %}</p>
             </div>
+            {% endif %}
             <div>
               {{ deal['notes'] }}
             </div>

@@ -77,8 +77,10 @@ def index():
     # Used for days and places filter on sidebar
     for deal in all_deals:
         d = deal.dates.split(',')
-        deal.start_time = datetime.strptime(deal.start_time, "%H:%M").strftime("%I:%M %p")
-        deal.end_time = datetime.strptime(deal.end_time, "%H:%M").strftime("%I:%M %p")
+        if deal.start_time:
+            deal.start_time = datetime.strptime(deal.start_time, "%H:%M").strftime("%I:%M %p")
+        if deal.end_time:
+            deal.end_time = datetime.strptime(deal.end_time, "%H:%M").strftime("%I:%M %p")
         for day in d:
             if day not in days:
                 days.append(day)
