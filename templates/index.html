@@ -105,8 +105,91 @@
 
 <!-- Centered Container -->
 <div class="container p-3">
+  <div class="row mx-auto rounded" id="Daily">
+    <h1><strong>Daily</strong></h1>
+    <hr>
+  </div>
+
+  <!-- Days -->
+  <div class="row flex-wrap">
+    <div class="col col-lg-3">
+      <a href="/subway">
+      <div class="card my-4 mx-auto text-center"
+        style="width: 200px">
+        <img class="card-img-top" src="/static/icons/subway.webp">
+        <div class="card-body">
+          <h4 class="card-title">Subway</h4>
+        </div>
+        <button type="button" class="btn btn-success">
+          Details
+        </button>
+      </div>
+      </a>
+    </div>
+    {% for deal in deals %}
+    {% if "Daily" in deal['dates'] %}
+    <div class="col col-lg-3">
+      <div class="card my-4 mx-auto text-center" data-bs-toggle="modal" data-bs-target="#modal-{{ deal['id'] }}"
+        style="width: 200px">
+        {% set place = deal['place'].lower().replace("'", "").replace(' ', '') %}
+        <img class="card-img-top" src="/static/icons/{{ place }}.webp">
+        <div class="card-body">
+          <h4 class="card-title">{{ deal['place'] }}</h4>
+          <p class="card-text">{{ deal['title'] }}</p>
+          <p>{% if deal['start_time'] %}
+            {{ deal['start_time']}}
+              - 
+            {% if deal['end_time'] %}
+              {{ deal['end_time']}}
+            {% endif %}
+          {% endif %}</p>
+        </div>
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-{{ deal['id'] }}">
+          Details
+        </button>
+      </div>
+    </div>
+    <!-- Deal modal -->
+    <div class="modal" id="modal-{{ deal['id'] }}">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title text-center">{{ deal['place'] }} - {{ deal['title'] }}</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            {% if deal['start_time'] or deal['end_time'] %}
+            <div>
+              <p>{% if deal['start_time'] %}
+                {{ deal['start_time']}}
+                  - 
+                {% if deal['end_time'] %}
+                  {{ deal['end_time']}}
+                {% endif %}
+              {% endif %}</p>
+            </div>
+            {% endif %}
+            <div>
+              {{ deal['notes'] }}
+            </div>
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+
+
   <!-- Content -->
   {% for day in days %}
+  {% if day != "Daily" %}
   <div class="row mx-auto rounded" id="{{ day }}">
     <h1><strong>{{ day }}</strong></h1>
     <hr>
@@ -173,6 +256,7 @@
     {% endif %}
     {% endfor %}
   </div>
+  {% endif %}
   {% endfor %}
 </div>
 

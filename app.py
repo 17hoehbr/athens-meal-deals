@@ -1,4 +1,6 @@
 import os
+import qrcode
+import json
 from flask import Flask, render_template, redirect, request, send_file, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import asc
@@ -44,6 +46,12 @@ class pending_deals(db.Model):
     title = db.Column(db.Text, nullable=False)
     notes = db.Column(db.Text)
     last_verified = db.Column(db.Text)
+
+with open('./static/subway/subway.json') as f:
+    subway_deals = json.load(f)
+for deal in subway_deals:
+    img = qrcode.make(subway_deals[deal]['code'])
+    img.save(f"./static/subway/{deal}.png")
 
 # Create a decorator for authentication
 def authenticate(username, password):
@@ -232,6 +240,9 @@ def admin():
 
     return render_template('admin.html', col_names=col_names, pending_deals=pending_deals_data, deals=deals_data)
 
+@app.route('/subway')
+def subway():
+    return render_template('subway.html', subway_deals=subway_deals)
 
 @app.route('/manifest.json')
 def serve_manifest():
@@ -242,4 +253,4 @@ def serve_sw():
     return send_file('sw.js', mimetype='application/javascript')
 
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=False, port=5007, host="0.0.0.0")
+    app.run(debug=True, use_reloader=True, port=5007, host="0.0.0.0")

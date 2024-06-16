@@ -1,0 +1,57 @@
+{
+    "0": {
+        "name": "Footlong Sub",
+        "price": 6.99,
+        "code": "mua:MUAUS:eyJ4ZG06YWN0aXZpdHlJZCI6Inhjb3JlOm9mZmVyLWFjdGl2aXR5OjE4NzU0NTJiZTcxOWNiNjUiLCJ4ZG06cGxhY2VtZW50SWQiOiJ4Y29yZTpvZmZlci1wbGFjZW1lbnQ6MTc4NWI0MDc1N2E0NjgzYyJ9",
+        "alt_code": "FTL699"
+    },
+    "1": {
+        "name": "6in Sub",
+        "price": 3.99,
+        "code": "mua:MUAUS:eyJ4ZG06YWN0aXZpdHlJZCI6Inhjb3JlOm9mZmVyLWFjdGl2aXR5OjE4NzU0NjIyNzNiNDU4NzgiLCJ4ZG06cGxhY2VtZW50SWQiOiJ4Y29yZTpvZmZlci1wbGFjZW1lbnQ6MTc4NWI0MDc1N2E0NjgzYyJ9",
+        "alt_code": "SIXINCHSUB"
+    },
+    "2": {
+        "name": "Two Footlongs",
+        "price": 12.99,
+        "code": "mua:MUAUS:eyJ4ZG06YWN0aXZpdHlJZCI6Inhjb3JlOm9mZmVyLWFjdGl2aXR5OjE4NzU0YmUzNzM2ZTM2NzUiLCJ4ZG06cGxhY2VtZW50SWQiOiJ4Y29yZTpvZmZlci1wbGFjZW1lbnQ6MTc4NWI0MDc1N2E0NjgzYyJ9",
+        "alt_code": "FTL1299"
+    },
+    "3": {
+        "name": "Three Footlongs",
+        "price": 17.99,
+        "code": "mua:MUAUS:eyJ4ZG06YWN0aXZpdHlJZCI6Inhjb3JlOm9mZmVyLWFjdGl2aXR5OjE4NzU0YmUzNzM2ZTM2NzUiLCJ4ZG06cGxhY2VtZW50SWQiOiJ4Y29yZTpvZmZlci1wbGFjZW1lbnQ6MTc4NWI0MDc1N2E0NjgzYyJ9",
+        "alt_code": "FTL1799"
+    },
+    "4": {
+        "name": "6in Meal",
+        "price": 6.49,
+        "code": "mua:MUAUS:eyJ4ZG06YWN0aXZpdHlJZCI6Inhjb3JlOm9mZmVyLWFjdGl2aXR5OjE4NzU0YTk1MjgzOGQ3YzIiLCJ4ZG06cGxhY2VtZW50SWQiOiJ4Y29yZTpvZmZlci1wbGFjZW1lbnQ6MTc4NWI0MDc1N2E0NjgzYyJ9",
+        "alt_code": "649MEAL"
+    },
+    "5": {
+        "name": "Footlong Meal",
+        "price": 8.99,
+        "code": "mua:MUAUS:eyJ4ZG06YWN0aXZpdHlJZCI6Inhjb3JlOm9mZmVyLWFjdGl2aXR5OjE4NzU0N2NlYzJiNDg5MjEiLCJ4ZG06cGxhY2VtZW50SWQiOiJ4Y29yZTpvZmZlci1wbGFjZW1lbnQ6MTc4NWI0MDc1N2E0NjgzYyJ9",
+        "alt_code": "899MEAL"
+    },
+    "6": {
+        "name": "Small Drink w/ Footlong",
+        "price": 0,
+        "code": "mua:MUAUS:eyJ4ZG06YWN0aXZpdHlJZCI6Inhjb3JlOm9mZmVyLWFjdGl2aXR5OjE4NzU0ZTBmMmZlZTk2ZGMiLCJ4ZG06cGxhY2VtZW50SWQiOiJ4Y29yZTpvZmZlci1wbGFjZW1lbnQ6MTc4NWI0MDc1N2E0NjgzYyJ9",
+        "alt_code": "FOUNTAIN"
+    },
+    "7": {
+        "name": "Chips w/ Footlong",
+        "price": 0,
+        "code": "mua:MUAUS:eyJ4ZG06YWN0aXZpdHlJZCI6Inhjb3JlOm9mZmVyLWFjdGl2aXR5OjE4NzU0Y2FjNmEzOGQ3YzMiLCJ4ZG06cGxhY2VtZW50SWQiOiJ4Y29yZTpvZmZlci1wbGFjZW1lbnQ6MTc4NWI0MDc1N2E0NjgzYyJ9",
+        "alt_code": "SNACK"
+    },
+    "8": {
+        "name": "Cookie w/ Any Purchase",
+        "price": 0,
+        "code": "mua:MUAUS:eyJ4ZG06YWN0aXZpdHlJZCI6Inhjb3JlOm9mZmVyLWFjdGl2aXR5OjE4NzU0ZDQ0ZWE5MmMyN2EiLCJ4ZG06cGxhY2VtZW50SWQiOiJ4Y29yZTpvZmZlci1wbGFjZW1lbnQ6MTc4NWI0MDc1N2E0NjgzYyJ9",
+        "alt_code": "SWEET"
+    }
+}
+
