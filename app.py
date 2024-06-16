@@ -50,8 +50,9 @@ class pending_deals(db.Model):
 with open('./static/subway/subway.json') as f:
     subway_deals = json.load(f)
 for deal in subway_deals:
-    img = qrcode.make(subway_deals[deal]['code'])
-    img.save(f"./static/subway/{deal}.png")
+    if not os.path.isfile(f"./static/subway/{deal}.png"):
+        img = qrcode.make(subway_deals[deal]['code'])
+        img.save(f"./static/subway/{deal}.png")
 
 # Create a decorator for authentication
 def authenticate(username, password):
@@ -253,4 +254,4 @@ def serve_sw():
     return send_file('sw.js', mimetype='application/javascript')
 
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=True, port=5007, host="0.0.0.0")
+    app.run(debug=False, use_reloader=False, port=5007, host="0.0.0.0")
